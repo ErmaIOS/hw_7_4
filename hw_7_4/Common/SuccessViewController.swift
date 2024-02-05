@@ -6,24 +6,33 @@
 //
 
 import UIKit
-
+import SnapKit
 class SuccessViewController: UIViewController {
+    
+    
+    private lazy var successImage: UIImageView = MakeView.shared.makerImage(imageName: "checkmark.circle.fill",imageBackgroundColor: .green, imageTintColor: .white)
+    
+    private lazy var successLabel: UILabel = MakeView.shared.makerLabel(text: "Translation completed",textColor: .black,textSize: 20)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .green
+        
+        view.addSubview(successImage)
+        view.addSubview(successLabel)
+        
+        successImage.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.height.width.equalTo(100)
+        }
+        
+        successLabel.snp.makeConstraints { make in
+            make.top.equalTo(successImage.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
